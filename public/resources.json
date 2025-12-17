@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "category": "case-study",
+    "type": "Case Study",
+    "title": "How Regular Health Surveillance Prevents Major Incidents",
+    "description": "A detailed analysis of how proactive health monitoring prevented workplace accidents and improved employee wellbeing in a manufacturing setting.",
+    "date": "March 2024",
+    "readTime": "10 min read",
+    "icon": "FileText",
+    "color": "from-blue-500 to-indigo-400",
+    "url": "https://example.com/case-study/health-surveillance"
+  },
+  {
+    "id": 2,
+    "category": "blog",
+    "type": "Blog Post",
+    "title": "Mental Health Strategies for Hybrid Teams",
+    "description": "Expert guidance on supporting mental wellbeing in modern hybrid work environments.",
+    "date": "February 2024",
+    "readTime": "7 min read",
+    "icon": "BookOpen",
+    "color": "from-green-500 to-emerald-400",
+    "url": "https://example.com/blog/mental-health-strategies"
+  },
+  {
+    "id": 3,
+    "category": "whitepaper",
+    "type": "Whitepaper",
+    "title": "Annual Occupational Health Compliance Guide — 2025",
+    "description": "Comprehensive guide to staying compliant with the latest occupational health regulations.",
+    "date": "January 2025",
+    "readTime": "30 min read",
+    "icon": "BarChart3",
+    "color": "from-purple-500 to-pink-400",
+    "url": "https://example.com/whitepaper/compliance-guide-2025"
+  },
+  {
+    "id": 4,
+    "category": "checklist",
+    "type": "Checklist",
+    "title": "Pre-Employment Medical Assessment Checklist",
+    "description": "Essential items to cover when conducting pre-employment health screenings.",
+    "date": "December 2023",
+    "readTime": "5 min read",
+    "icon": "FileCheck",
+    "color": "from-teal-500 to-cyan-400",
+    "url": "https://example.com/checklist/pre-employment"
+  }
+]

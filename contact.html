@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | CJG Medical Services</title>
+  <style>
+    /* Inline CSS for the Contact Us page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #081B2C, #003D3D);
+      color: #F9FAFB;
+    }
+    header, footer {
+      background: #081B2C;
+      color: #00E1D3;
+      text-align: center;
+      padding: 1rem;
+    }
+    .contact {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .contact h1 {
+      font-size: 2.5rem;
+      color: #00E1D3;
+    }
+    .contact form {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact label {
+      margin: 0.5rem 0;
+    }
+    .contact input, .contact textarea {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #00E1D3;
+      border-radius: 5px;
+    }
+    .contact button {
+      padding: 0.5rem;
+      background: #00E1D3;
+      color: #081B2C;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About Us</a> |
+      <a href="services.html">Services</a> |
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact">
+      <h1>Get in Touch</h1>
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CJG Medical Services Ltd. All rights reserved.</p>
+  </footer>
+</body>
+</html>

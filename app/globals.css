@@ -1,0 +1,1402 @@
+@import "tailwindcss";
+
+:root {
+  --color-midnight: #081B2C;
+  --color-teal: #00E1D3;
+  --color-lime: #BFFF00;
+  --color-silver: #D3D7DA;
+  --color-off-white: #F9FAFB;
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+  --font-mono: var(--font-ibm-plex-mono);
+}
+
+/* Global scroll to top button - ensure it's always visible */
+button[aria-label="Scroll to top"] {
+  position: fixed !important;
+  z-index: 99999 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: flex !important;
+  pointer-events: auto !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #081B2C 0%, #003D3D 100%);
+  color: var(--color-off-white);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+code, pre {
+  font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+nav.topbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(8, 27, 44, 0.95);
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  min-height: 64px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  justify-content: center !important;
+}
+
+.nav-links.justify-evenly {
+  justify-content: center !important;
+  gap: 0.1rem !important;
+}
+
+/* Underline animation for navigation links */
+.nav-link {
+  position: relative;
+  color: var(--color-off-white);
+  text-decoration: none;
+  padding: 1rem 1.25rem;
+  margin: 0 0.25rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.nav-link .underline-animation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-teal);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover .underline-animation {
+  width: 100%;
+}
+
+.nav-link.active .underline-animation {
+  width: 100%;
+}
+
+/* Glowing animation for navigation links */
+.nav-link .glow-animation {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-teal);
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover .glow-animation {
+  width: 100%;
+  box-shadow: 0 0 8px var(--color-teal), 0 0 16px var(--color-teal);
+}
+
+.nav-separator {
+  color: var(--color-teal);
+  margin: 0 0.3rem;
+  font-size: 1.2em;
+}
+
+.topbar .btn, .topbar button {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  background: var(--color-teal);
+  color: var(--color-midnight);
+  border: none;
+  cursor: pointer;
+  margin: 0 0.75rem;
+  min-width: 100px;
+  min-height: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.btn-global {
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  margin: 0.5rem;
+  min-width: 120px;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #081B2C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00E1D3, #00B3A8);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00B3A8, #00E1D3);
+}
+
+/* Hide scrollbar for horizontal scroll on industries */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure proper line clamping */
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* Update padding and spacing for all text containers */
+.card, .box, .panel {
+  padding: 2.5rem 4rem;  /* Increased horizontal padding */
+  margin: 1.5rem;
+}
+
+/* Add more generous spacing for text elements */
+p, span, div {
+  line-height: 1.8;  /* Increased line height */
+  max-width: 100%;   /* Ensure text doesn't overflow */
+}
+
+/* Adjust form elements spacing */
+input, select, textarea {
+  padding: 1rem 2rem;    /* Increased padding */
+  margin: 0.75rem 0;
+  width: calc(100% - 2rem); /* Account for padding */
+}
+
+/* Container padding */
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 95%;        /* Prevent content from touching edges */
+  margin: 0 auto;
+}
+
+/* Grid and flex spacing */
+.grid {
+  gap: 2.5rem;
+  padding: 1.5rem;
+}
+
+.flex {
+  gap: 1.5rem;
+}
+
+/* Section spacing */
+section {
+  padding: 5rem 2.5rem;
+}
+
+/* Update spacing utilities */
+.space-y-3 > * + * {
+  margin-top: 1rem !important;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1.25rem !important;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.75rem !important;
+}
+
+.gap-8 {
+  gap: 2rem !important;
+}
+
+.gap-12 {
+  gap: 3rem !important;
+}
+
+.gap-24 {
+  gap: 6rem !important;
+}
+
+/* Add padding to common components */
+.card, .box, .panel {
+  padding: 2.5rem 4rem;  /* Increased horizontal padding */
+  margin: 1.5rem;
+}
+
+/* Update form elements */
+input, select, textarea {
+  padding: 1rem 2rem;    /* Increased padding */
+  margin: 0.75rem 0;
+  width: calc(100% - 2rem); /* Account for padding */
+}
+
+/* Update button spacing */
+button, .btn {
+  font-size: 1.1rem;
+  padding: 1.5rem 4.5rem;  /* More vertical and horizontal padding */
+  border-radius: 0.85rem;
+  margin: 1rem;
+  min-width: 220px;        /* Increased minimum width */
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Container padding */
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 95%;        /* Prevent content from touching edges */
+  margin: 0 auto;
+}
+
+/* Grid and flex spacing */
+.grid {
+  gap: 2.5rem;
+  padding: 1.5rem;
+}
+
+.flex {
+  gap: 1.5rem;
+}
+
+/* Section spacing */
+section {
+  padding: 5rem 2.5rem;
+}
+
+/* Add margin to headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.max-w-\[440px\] {
+  max-width: 440px !important;
+}
+
+/* Force testimonial box width for What Our Clients Say section */
+.testimonial-box {
+  max-width: 460px !important;
+  width: 100%;
+}
+
+/* Force testimonial box width for What Our Clients Say section with higher specificity */
+.grid .testimonial-box {
+  max-width: 500px !important;
+  width: 100% !important;
+}
+
+/* Extra spacing for testimonial boxes on desktop */
+@media (min-width: 1024px) {
+  .testimonial-row {
+    column-gap: 3rem !important;
+  }
+
+  /* Professional Medical Examination box - ensure icon centered and proper padding on desktop */
+  .relative.h-\[400px\] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 3rem 2.5rem !important;
+  }
+
+  .relative.h-\[400px\] .text-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 2.5rem !important;
+  }
+
+  .relative.h-\[400px\] svg {
+    margin: 0 auto 2.5rem auto !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+  }
+
+  .relative.h-\[400px\] p {
+    padding: 0 2rem !important;
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE STYLES FOR ALL DEVICES
+   Desktop stays unchanged, mobile gets optimized
+   ============================================ */
+
+/* Extra Small Devices (320px - 374px) - Very small phones */
+@media (max-width: 374px) {
+  /* Navigation - smaller text and padding */
+  nav.topbar {
+    padding: 0.5rem 0.75rem !important;
+    min-height: 52px !important;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem !important;
+    margin: 0 0.15rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Logo text smaller */
+  nav.topbar a {
+    font-size: 0.9rem !important;
+  }
+
+  /* Scroll to top button - even bigger on very small devices like SE and Z Fold */
+  button[aria-label="Scroll to top"],
+  button.fixed.bottom-12,
+  .fixed.bottom-12.left-12,
+  button[class*="fixed"][class*="bottom"] {
+    width: 4.5rem !important;
+    height: 4.5rem !important;
+    bottom: 5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  button[aria-label="Scroll to top"] svg,
+  button.fixed.bottom-12 svg,
+  .fixed.bottom-12.left-12 svg {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+
+  /* Headings - smaller */
+  h1 {
+    font-size: 1.75rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+  }
+
+  /* Buttons - smaller */
+  button, .btn, .btn-global {
+    font-size: 0.85rem !important;
+    padding: 0.65rem 1.25rem !important;
+  }
+
+  /* Section padding - tighter */
+  section {
+    padding: 1.5rem 0.75rem !important;
+  }
+
+  /* Container padding */
+  .container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+/* Small Devices (375px - 428px) - Regular to large phones */
+@media (min-width: 375px) and (max-width: 428px) {
+  /* Navigation - optimized for medium phones */
+  nav.topbar {
+    padding: 0.5rem 1rem !important;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Medium Devices (429px - 767px) - Large phones and small tablets */
+@media (min-width: 429px) and (max-width: 767px) {
+  /* Navigation - slightly larger for bigger phones */
+  nav.topbar {
+    padding: 0.5rem 1.25rem !important;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Headings - slightly larger */
+  h1 {
+    font-size: 2.25rem !important;
+  }
+
+  h2 {
+    font-size: 1.875rem !important;
+  }
+}
+
+/* Tablet Devices (768px - 1023px) - Tablets in portrait */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Prevent horizontal overflow on tablets */
+  body, html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Navigation - tablet optimized */
+  nav.topbar {
+    padding: 0.5rem 1.5rem !important;
+  }
+
+  .nav-link {
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Section padding - tablet spacing */
+  section {
+    padding: 3rem 2rem !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure containers don't overflow */
+  .container {
+    max-width: 100% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Grid - tablet columns */
+  .grid {
+    gap: 2rem !important;
+  }
+
+  /* Fix three service cards (Occupational Medicals, Health Surveillance, Employee Wellbeing) on tablet - stack vertically to avoid uneven 2+1 layout */
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Ensure service cards don't squash on tablet */
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Fix min-width constraints on service cards for tablet */
+  .min-w-\[350px\] {
+    min-width: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix reviews/testimonials section on tablet - stack vertically to prevent horizontal overflow */
+  section .flex.flex-row.justify-center,
+  .flex.flex-row.justify-center {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5rem !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  section .flex.flex-row.justify-center > *,
+  .flex.flex-row.justify-center > * {
+    min-width: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Override testimonial card min-width on tablet - force full width */
+  section .testimonial-card,
+  .testimonial-card,
+  section .flex.flex-row > div[class*="bg-white/5"],
+  section .flex.flex-row > div[class*="backdrop-blur"] {
+    min-width: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Ensure testimonials container doesn't overflow on tablet */
+  section .flex.flex-row.justify-center[style*="maxWidth"],
+  .flex.flex-row.justify-center[style*="maxWidth"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 1rem !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Professional Medical Examination box - ensure icon centered and proper padding on tablet */
+  .relative.h-\[400px\] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2.5rem 2rem !important;
+  }
+
+  .relative.h-\[400px\] .text-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 2rem !important;
+  }
+
+  .relative.h-\[400px\] svg {
+    margin: 0 auto 2rem auto !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+  }
+
+  .relative.h-\[400px\] p {
+    padding: 0 1.5rem !important;
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Scroll to top button - smaller on tablet/iPad to avoid full size */
+  button[aria-label="Scroll to top"],
+  .fixed.bottom-12.left-12,
+  button[class*="fixed"][class*="bottom"] {
+    width: 3rem !important;
+    height: 3rem !important;
+    bottom: 5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    position: fixed !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  button[aria-label="Scroll to top"] svg,
+  .fixed.bottom-12.left-12 svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  /* Service cards - 2 columns on tablet instead of 3 */
+  .grid[class*="md:grid-cols-2"][class*="lg:grid-cols-3"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  /* Service cards with 3 columns - force 2 columns on tablet */
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-2"][class*="lg:grid-cols-3"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Highlights/features grid - stack vertically on tablet to avoid uneven layout */
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Professional Medical Examination box - proper padding on tablet */
+  .relative.h-\[400px\] {
+    padding: 2.5rem 2.5rem !important;
+  }
+
+  .relative.h-\[400px\] .text-center {
+    padding: 0 2rem !important;
+  }
+
+  .relative.h-\[400px\] svg {
+    margin: 0 auto 2rem auto !important;
+  }
+
+  /* Scroll to top button - smaller on tablet/iPad */
+  button[aria-label="Scroll to top"],
+  button.fixed.bottom-12,
+  button[class*="fixed"][class*="bottom"] {
+    width: 3rem !important;
+    height: 3rem !important;
+    bottom: 5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  button[aria-label="Scroll to top"] svg,
+  button.fixed.bottom-12 svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+/* Mobile and Tablet Base Styles (max-width: 1023px) */
+@media (max-width: 1023px) {
+  /* Ensure no horizontal scrolling */
+  body, html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Large Tablets (1024px - 1366px) - iPad Pro and similar */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  /* Prevent horizontal overflow on large tablets */
+  body, html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Fix three service cards on large tablets - stack vertically for even layout */
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Fix min-width constraints on service cards for large tablets */
+  .min-w-\[350px\] {
+    min-width: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix reviews/testimonials on large tablets - stack vertically */
+  section .flex.flex-row.justify-center,
+  .flex.flex-row.justify-center {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5rem !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  section .flex.flex-row.justify-center > *,
+  .flex.flex-row.justify-center > * {
+    min-width: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Override testimonial card styles on large tablets */
+  section .testimonial-card,
+  .testimonial-card,
+  section .flex.flex-row > div[class*="bg-white/5"],
+  section .flex.flex-row > div[class*="backdrop-blur"] {
+    min-width: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Ensure testimonials container doesn't overflow */
+  section .flex.flex-row.justify-center[style*="maxWidth"],
+  .flex.flex-row.justify-center[style*="maxWidth"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 1rem !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure all containers respect viewport width */
+  .container,
+  section,
+  main {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Scroll to top button - smaller on large tablets/iPad Pro */
+  button[aria-label="Scroll to top"],
+  .fixed.bottom-12.left-12,
+  button[class*="fixed"][class*="bottom"] {
+    width: 3rem !important;
+    height: 3rem !important;
+    bottom: 5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  button[aria-label="Scroll to top"] svg,
+  .fixed.bottom-12.left-12 svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+/* Mobile Base Styles (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Reduce section padding on mobile */
+  section {
+    padding: 2rem 1rem !important;
+  }
+
+  /* Reduce container padding on mobile */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Reduce card/box padding on mobile */
+  .card, .box, .panel {
+    padding: 1.5rem 1rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  /* Reduce grid gaps on mobile */
+  .grid {
+    gap: 1.5rem !important;
+    padding: 1rem !important;
+  }
+
+  .gap-8 {
+    gap: 1rem !important;
+  }
+
+  .gap-12 {
+    gap: 1.5rem !important;
+  }
+
+  .gap-24 {
+    gap: 2rem !important;
+  }
+
+  /* Reduce flex gaps on mobile */
+  .flex {
+    gap: 1rem !important;
+  }
+
+  /* Make buttons smaller and full width on mobile */
+  button, .btn, .btn-global {
+    font-size: 0.9rem !important;
+    padding: 0.75rem 1.5rem !important;
+    min-width: auto !important;
+    width: 100% !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  /* Fix form elements on mobile */
+  input, select, textarea {
+    padding: 0.75rem 1rem !important;
+    margin: 0.5rem 0 !important;
+    width: 100% !important;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+
+  /* Reduce heading sizes on mobile - responsive scaling */
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4.5vw, 2rem) !important;
+    margin-bottom: 0.875rem !important;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem) !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Reduce paragraph line height on mobile - responsive */
+  p {
+    line-height: 1.6 !important;
+    font-size: clamp(0.875rem, 2.5vw, 1rem) !important;
+  }
+
+  /* Navbar adjustments for mobile - responsive, all links scale together */
+  nav.topbar {
+    padding: 0.5rem clamp(0.5rem, 1.5vw, 1rem) !important;
+    min-height: 50px !important;
+  }
+
+  /* All nav links scale together proportionally on small screens - including Home */
+  .nav-link,
+  nav.topbar .nav-links a.nav-link,
+  nav.topbar .nav-links a.nav-link:first-child,
+  nav.topbar .nav-links .nav-link {
+    padding: 0.4rem clamp(0.3rem, 1.2vw, 0.8rem) !important;
+    margin: 0 0.1rem !important;
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem) !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Reduce spacing utilities on mobile */
+  .space-y-3 > * + * {
+    margin-top: 0.75rem !important;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 1rem !important;
+  }
+
+  .space-y-6 > * + * {
+    margin-top: 1.25rem !important;
+  }
+
+  /* Make hero sections more compact on mobile */
+  .min-h-screen {
+    min-height: 70vh !important;
+  }
+
+  /* Reduce max-width constraints on mobile */
+  .max-w-\[440px\] {
+    max-width: 100% !important;
+  }
+
+  .testimonial-box {
+    max-width: 100% !important;
+  }
+
+  .grid .testimonial-box {
+    max-width: 100% !important;
+  }
+
+  /* Footer adjustments */
+  footer {
+    padding: 1.5rem 1rem !important;
+  }
+
+  /* Ensure text doesn't overflow on mobile */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Prevent text from being too small on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Ensure navigation fits on all mobile screens */
+  nav.topbar {
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  .nav-links {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Make logo smaller and wrap to two lines on mobile navigation, scales with screen */
+  nav.topbar a[href="/"] {
+    font-size: clamp(0.45rem, 1.5vw, 0.6rem) !important;
+    white-space: normal !important;
+    line-height: 1.1 !important;
+    width: clamp(3rem, 8vw, 3.5rem) !important;
+    max-width: clamp(3rem, 8vw, 3.5rem) !important;
+    text-align: left !important;
+    flex-shrink: 0 !important;
+    padding-right: clamp(0.2rem, 0.8vw, 0.4rem) !important;
+    word-break: normal !important;
+    display: inline-block !important;
+  }
+
+  /* Ensure navigation layout fits on mobile */
+  nav.topbar > div {
+    justify-content: flex-start !important;
+    gap: clamp(0.3rem, 1vw, 0.5rem) !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .nav-links {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Ensure nav container doesn't overflow on very small screens */
+  nav.topbar {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  nav.topbar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Make sure images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Reduce icon sizes on mobile */
+  svg {
+    max-width: 100%;
+  }
+
+  /* Better spacing for mobile lists */
+  ul, ol {
+    padding-left: 1.25rem;
+  }
+
+  /* Reduce letter spacing on mobile for better readability */
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Ensure proper text centering on mobile */
+  .text-center {
+    text-align: center !important;
+  }
+
+
+  /* Stats section - stack vertically on mobile (grid grid-cols-2) */
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Testimonials - stack vertically, one per row on mobile - force with high specificity */
+  section .flex.flex-row.justify-center,
+  .flex.flex-row.justify-center {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  section .flex.flex-row.justify-center > *,
+  .flex.flex-row.justify-center > *,
+  section .flex.flex-row > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+    flex: none !important;
+  }
+
+  /* Override inline styles for testimonials on mobile - target motion.div with high specificity */
+  section .flex.flex-row > div[class*="bg-white/5"],
+  section .flex.flex-row > div[class*="backdrop-blur"],
+  .testimonial-card,
+  section .testimonial-card {
+    --testimonial-min-width: auto !important;
+    --testimonial-max-width: 100% !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  /* Force testimonials container to not overflow */
+  section .flex.flex-row.justify-center[style*="maxWidth"],
+  .flex.flex-row.justify-center[style*="maxWidth"] {
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Professional Health Examination - center icon above text with proper padding */
+  /* Professional Health Examination - center icon above text with proper padding */
+  .relative.h-\[400px\] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2.5rem 2rem !important;
+  }
+
+  .relative.h-\[400px\] .text-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 2rem !important;
+  }
+
+  .relative.h-\[400px\] svg {
+    margin: 0 auto 2rem auto !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+  }
+
+  .relative.h-\[400px\] p {
+    padding: 0 1.5rem !important;
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Reduce space below hero sections */
+  section.relative.min-h-\[70vh\] {
+    padding-bottom: 2rem !important;
+  }
+
+  section.relative.min-h-\[40vh\] {
+    padding-bottom: 2rem !important;
+  }
+
+  /* Reduce space below "Your Health. Our Expertise" and "Our Story" sections */
+  section.relative.py-20 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  section.py-20 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  section.py-24 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Footer - hide Company and Services sections on mobile */
+  footer .grid > div:first-child,
+  footer .grid > div:nth-child(2) {
+    display: none !important;
+  }
+
+  footer .grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Fix footer scrolling issue - ensure footer doesn't block scrolling */
+  footer {
+    position: relative !important;
+    overflow: visible !important;
+    padding-bottom: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  footer > div {
+    padding-bottom: 1rem !important;
+  }
+
+  /* Ensure copyright and "Website created by Ben" text is visible */
+  footer .border-t.border-white\/10 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  footer .border-t.border-white\/5 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  footer p {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Add just enough space after footer for scrolling */
+  footer::after {
+    content: '';
+    display: block;
+    height: 5rem;
+    width: 100%;
+  }
+
+  /* Add minimal bottom padding to body/main to ensure footer is scrollable */
+  body {
+    padding-bottom: 6rem !important;
+  }
+
+  main {
+    padding-bottom: 4rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Services page - reduce bottom padding in service boxes */
+  section .bg-white\/5.rounded-2xl {
+    padding-bottom: 1rem !important;
+    padding-top: 2rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  section .bg-white\/5[style*="paddingBottom"],
+  section .bg-white\/5[style*="padding-bottom"] {
+    padding-bottom: 1rem !important;
+  }
+
+  /* Target service boxes specifically */
+  section .bg-white\/5.backdrop-blur-sm {
+    padding-bottom: 1rem !important;
+  }
+
+  /* Core Values - reduce space between icon and top of box */
+  .core-value-icon {
+    --icon-margin-top: 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Add divider lines between feature items on mobile */
+  .feature-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Force all grid columns to stack on mobile - high specificity */
+  .grid.grid-cols-3,
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"],
+  .grid[class*="md:grid-cols-3"],
+  .grid[class*="lg:grid-cols-3"],
+  section .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid.grid-cols-4,
+  .grid[class*="md:grid-cols-4"],
+  .grid[class*="lg:grid-cols-4"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid[class*="md:grid-cols-2"][class*="lg:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid[class*="md:grid-cols-2"][class*="lg:grid-cols-4"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix highlights grid on home page */
+  .grid.gap-24 {
+    gap: 2rem !important;
+  }
+
+  /* Fix feature boxes with min-width constraints - remove all constraints on mobile */
+  .min-w-\[350px\],
+  section .min-w-\[350px\],
+  .group.min-w-\[350px\] {
+    min-width: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Ensure all grid items take full width on mobile */
+  .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] > *,
+  section .grid[class*="grid-cols-1"][class*="md:grid-cols-3"] > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Fix Professional Workplace Health Solutions section */
+  .grid[class*="lg:grid-cols-2"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix Meet the Team section */
+  .grid[class*="md:grid-cols-2"][class*="lg:grid-cols-4"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix services grid */
+  .grid[class*="md:grid-cols-2"][class*="lg:grid-cols-3"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix Why Choose Us section */
+  .grid[class*="md:grid-cols-2"][class*="lg:grid-cols-4"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ensure all grid items take full width on mobile */
+  .grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix any flex containers that should stack on mobile */
+  .flex.flex-col[class*="sm:flex-row"] {
+    flex-direction: column !important;
+  }
+
+  /* Fix hero section button containers */
+  .flex.flex-col[class*="sm:flex-row"].items-center.justify-center {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Fix service boxes width constraints */
+  .mx-auto[style*="width"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix any sections with fixed heights that might overflow */
+  .h-\[285px\] {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  .h-\[400px\] {
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* Fix padding on sections with specific classes */
+  section.pt-24,
+  section.pt-24[class*="md:pt-40"] {
+    padding-top: 2rem !important;
+  }
+
+  section.pb-20,
+  section.pb-20[class*="md:pb-32"] {
+    padding-bottom: 2rem !important;
+  }
+
+  section.py-32 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  section.px-8,
+  section.px-8[class*="md:px-20"][class*="lg:px-32"] {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Fix container max-widths on mobile */
+  .max-w-6xl,
+  .max-w-7xl,
+  .max-w-5xl,
+  .max-w-4xl {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Scroll to top button - bigger and centered on mobile, ensure it appears on all devices */
+  button[aria-label="Scroll to top"],
+  button.fixed.bottom-12,
+  .fixed.bottom-12.left-12,
+  button[class*="fixed"][class*="bottom"] {
+    width: 4rem !important;
+    height: 4rem !important;
+    bottom: 5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    position: fixed !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  button[aria-label="Scroll to top"] svg,
+  button.fixed.bottom-12 svg,
+  .fixed.bottom-12.left-12 svg {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+/* On desktop, remove borders since items are side by side */
+@media (min-width: 768px) {
+  .feature-item:not(:last-child) {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* Dropdown animations */
